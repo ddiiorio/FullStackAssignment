@@ -1,2 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    margin: 0;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    width: 70% !important;
+    margin-left: auto;
+    margin-right: auto;
+    color: white !important;
+}
+
+.mat-button {
+    line-height: 55px !important;
+}
