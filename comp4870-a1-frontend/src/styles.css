@@ -15,3 +15,7 @@ body {
 .mat-button {
     line-height: 55px !important;
 }
+
+.mat-form-field {
+    width: 100%;
+}

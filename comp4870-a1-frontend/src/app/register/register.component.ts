@@ -11,12 +11,11 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
-    Username: new FormGroup({
+    Username: new FormControl(''),
     Password: new FormControl(''),
     Email: new FormControl(''),
     Country: new FormControl(''),
     MobileNumber: new FormControl('')
-    })
   });
 
   constructor(
@@ -34,6 +33,5 @@ export class RegisterComponent implements OnInit {
         Country: ['', Validators.required],
         MobileNumber: ['', Validators.required]
     });
-}
-
+  }
 }
