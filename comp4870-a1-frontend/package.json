@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.4",
-    "@angular/cdk": "^7.3.1",
+    "@angular/cdk": "^7.3.2",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
@@ -23,6 +23,7 @@
     "@angular/router": "~7.2.0",
     "@ckeditor/ckeditor5-build-classic": "^11.2.0",
     "core-js": "^2.5.4",
+    "ngx-scrollbar": "^4.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

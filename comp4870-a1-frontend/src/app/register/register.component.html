@@ -7,50 +7,49 @@
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="First Name" formControlName="FirstName"
-          [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors } " required>
+          [ngClass]="{ 'is-invalid': submitted && g.FirstName.errors } " required>
           <mat-error>First name is required</mat-error>
-        <!-- <mat-error *ngIf="f.FirstName.errors.required" >First Name is required</mat-error> -->
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="Last Name" formControlName="LastName"
-          [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" required>
+          [ngClass]="{ 'is-invalid': submitted && g.LastName.errors }" required>
           <mat-error>Last name is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="Username" formControlName="Username"
-          [ngClass]="{ 'is-invalid': submitted && f.Username.errors }" required>
+          [ngClass]="{ 'is-invalid': submitted && g.Username.errors }" required>
           <mat-error>Username is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="Email" type="email"
-          [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" required>
+          [ngClass]="{ 'is-invalid': submitted && g.Email.errors }" required>
           <mat-error>Email is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="Password" formControlName="Password" type="password"
-          [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" required>
+          [ngClass]="{ 'is-invalid': submitted && g.Password.errors }" required>
           <mat-error>Password is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
         <input matInput placeholder="Country" formControlName="Country"
-          [ngClass]="{ 'is-invalid': submitted && f.Country.errors }" required>
+          [ngClass]="{ 'is-invalid': submitted && g.Country.errors }" required>
           <mat-error>Country is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field hintLabel="Max 10 characters">
         <input matInput placeholder="Mobile Number" formControlName="MobileNumber" required
-          [ngClass]="{ 'is-invalid': submitted && f.MobileNumber.errors }" #input maxlength="10">
+          [ngClass]="{ 'is-invalid': submitted && g.MobileNumber.errors }" #input maxlength="10">
           <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
           <mat-error>Mobile number is required</mat-error>
       </mat-form-field>
