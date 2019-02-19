@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './index/index.component';
+import { SignInGuard } from './guards/sign.in.guard'
 
 const appRoutes: Routes = [
-  //{ path: '', component: AppComponent },
+  { path: '', component: IndexComponent },
+  // { path: '', component: IndexComponent, canActivate: [SignInGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '' }
+  { path: '', redirectTo: '/index', pathMatch: 'full' }
+  //{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({

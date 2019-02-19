@@ -40,5 +40,5 @@ export class RegisterComponent implements OnInit {
     }
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-}
+  }
 }

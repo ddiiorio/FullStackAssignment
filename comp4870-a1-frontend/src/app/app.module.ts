@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,12 +10,17 @@ import { MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTab
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './index/index.component';
+import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+import { Globals } from './globals';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +35,14 @@ import { LoginComponent } from './login/login.component';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    UserService,
+    Globals
+  ],
   bootstrap: [AppComponent]
 })
 
