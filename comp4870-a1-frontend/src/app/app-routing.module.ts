@@ -8,7 +8,7 @@ import { SignInGuard } from './guards/sign.in.guard'
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent },
-  // { path: '', component: IndexComponent, canActivate: [SignInGuard] },
+  //{ path: '', component: IndexComponent, canActivate: [SignInGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/index', pathMatch: 'full' }

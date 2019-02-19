@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Boat } from '../models/boat';
+import { BoatService } from '../services/boat.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
+  boats: Boat[] = [];
 
-  constructor() { }
+  constructor(private boatService: BoatService) { }
 
   ngOnInit() {
+      this.boatService.getAll().pipe(first()).subscribe(boats => {
+          this.boats = boats;
+      });
   }
-
 }

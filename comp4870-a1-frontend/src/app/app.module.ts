@@ -14,6 +14,7 @@ import { IndexComponent } from './index/index.component';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { Globals } from './globals';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { Globals } from './globals';
     MatIconModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     HttpClientModule
   ],
   providers: [

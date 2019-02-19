@@ -3,6 +3,7 @@
 
 body {
     margin: 0;
+    height: 100%;
 }
 
 .mat-toolbar-row, .mat-toolbar-single-row {
@@ -21,5 +22,15 @@ body {
 }
 
 .mat-card-actions {
-    margin-left: 0px !important;
+    margin-left: 0 !important;
+}
+
+.content {
+        min-height: 90vh;
+        height: initial;
+}
+
+.jumbotron {
+    margin-bottom: 0 !important;
+    height: 100%;
 }
