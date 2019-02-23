@@ -14,8 +14,8 @@ export class IndexComponent implements OnInit {
   constructor(private boatService: BoatService) { }
 
   ngOnInit() {
-      this.boatService.getAll().pipe(first()).subscribe(boats => {
-          this.boats = boats;
-      });
+      //this.boatService.getAll().pipe(first()).subscribe(boats => {
+      //    this.boats = boats;
+      //});
   }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -10,6 +11,7 @@ import { AuthenticationService } from '../services/authentication.service';
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -31,10 +34,10 @@ export class LoginComponent implements OnInit {
         });
 
         // reset login status
-        //this.authenticationService.logout();
+        this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     // convenience getter for easy access to form fields
@@ -59,5 +62,7 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                     this.loading = false;
                 });
+            
+                //this.snackBar.open('Login Success');
     }
 }

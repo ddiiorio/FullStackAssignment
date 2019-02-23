@@ -15,7 +15,7 @@
         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" *ngIf="currentUser">
             <ul class="navbar-nav flex-grow-1" routerLinkActive="active">
                 <li class="nav-item"><a mat-button class="nav-link text-white" routerLink="/">Home</a></li>
-                <li class="nav-item"><a mat-button class="nav-link text-white" routerLink="register">Logout</a></li>
+                <li class="nav-item"><a mat-button class="nav-link text-white" (click)="logout()">Logout</a></li>
             </ul>
         </div>
     </div>
