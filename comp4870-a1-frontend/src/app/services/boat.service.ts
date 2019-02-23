@@ -53,7 +53,7 @@ export class BoatService {
   
   addBoat (boat): Observable<Boat> {
     return this.http.post<Boat>(boatsUrl, boat, httpOptions).pipe(
-      tap((boat: Boat) => console.log(`added boat w/ id=${boat.id}`)),
+      tap((boat: Boat) => console.log(`added boat w/ id=${boat.BoatId}`)),
       catchError(this.handleError<Boat>('addBoat'))
     );
   }
