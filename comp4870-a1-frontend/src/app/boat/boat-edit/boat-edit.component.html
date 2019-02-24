@@ -1,3 +1,54 @@
-<p>
-  boat-edit works!
-</p>
+<div class="col-sm-12">
+    <h3>Edit Boat</h3>
+    <div class="boat-loading-shade"
+          *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-raised-button color="primary" [routerLink]="['/boats']"><mat-icon>list</mat-icon></a>
+    </div>
+    <mat-card class="mat-elevation-z4">
+      <form [formGroup]="boatForm" (ngSubmit)="onSubmit(boatForm.value)">
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Boat ID" formControlName="BoatId"
+                    [errorStateMatcher]="matcher" type="number" required>
+            <mat-error>Please enter Boat ID</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+              <input matInput placeholder="Boat Name" formControlName="BoatName"
+                      [errorStateMatcher]="matcher" required>
+              <mat-error>Please enter Boat Name</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Length In Feet" formControlName="LengthInFeet"
+                    [errorStateMatcher]="matcher" type="number" required>
+            <mat-error>Please enter Boat Length</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+              <input matInput placeholder="Boat Make" formControlName="Make"
+                      [errorStateMatcher]="matcher" required>
+              <mat-error>Please enter Boat Make</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Boat Description" formControlName="Description"
+                    [errorStateMatcher]="matcher" required>
+            <!-- <div [froalaEditor]>Boat Description</div> -->
+            <mat-error>Please enter Boat Description</mat-error>
+          </mat-form-field>
+        </div>
+          <div class="button-row">
+            <button type="submit" [disabled]="loading" mat-raised-button color="primary">Save</button>
+            <button mat-raised-button [routerLink]="['/boats']">Cancel</button>
+          </div>
+      </form>
+    </mat-card>
+  </div>

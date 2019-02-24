@@ -6,7 +6,11 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer' // + token
+    })
 };
 const boatsUrl = "/api/boats";
 
@@ -51,14 +55,14 @@ export class BoatService {
     );
   }
   
-  addBoat (boat): Observable<Boat> {
+  addBoat (boat: any): Observable<Boat> {
     return this.http.post<Boat>(boatsUrl, boat, httpOptions).pipe(
       tap((boat: Boat) => console.log(`added boat w/ id=${boat.BoatId}`)),
       catchError(this.handleError<Boat>('addBoat'))
     );
   }
   
-  updateBoat (id, boat): Observable<any> {
+  updateBoat (id: number, boat: any): Observable<any> {
     const url = `${boatsUrl}/${id}`;
     return this.http.put(url, boat, httpOptions).pipe(
       tap(_ => console.log(`updated boat id=${id}`)),
@@ -66,7 +70,7 @@ export class BoatService {
     );
   }
   
-  deleteBoat (id): Observable<Boat> {
+  deleteBoat (id: number): Observable<Boat> {
     const url = `${boatsUrl}/${id}`;
   
     return this.http.delete<Boat>(url, httpOptions).pipe(

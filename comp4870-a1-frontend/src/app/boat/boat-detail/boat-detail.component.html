@@ -1,3 +1,39 @@
-<p>
-  boat-detail works!
-</p>
+<div class="col-sm-12">
+    <h3>Boat Details</h3>
+  <div class="boat-loading-shade"
+        *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a class="nav-link text-white" mat-raised-button color="primary" [routerLink]="['/boats']">
+      <mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title><h3>{{ boat.BoatName }}</h3></mat-card-title> Name
+      <mat-card-subtitle>{{ boat.Description }}</mat-card-subtitle> Description
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+        <dt>Boat ID:</dt>
+        <dd>{{ boat.BoatId }}</dd>
+        <dt>Length In Feet:</dt>
+        <dd>{{ boat.LenthInFeet }}</dd>
+        <dt>Make:</dt>
+        <dd>{{ boat.Make }}</dd>
+      </dl>
+    </mat-card-content>
+
+    <!-- only show these buttons if admin signed in  *ngIf="currentUser === admin" or something -->
+    <mat-card-actions>
+      <div class="form-group">
+        <button mat-raised-button color="primary" [routerLink]="['/boat-edit', boat.BoatId]">
+          Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteBoat(boat.BoatId)">
+          Delete</button>
+      </div>
+    </mat-card-actions>
+    <!-- ------------------------------------------ -->
+
+  </mat-card>
+</div>
