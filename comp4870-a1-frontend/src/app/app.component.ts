@@ -13,15 +13,15 @@ export class AppComponent {
   title = 'Comp4870 Assignment 1';
   currentUser: User;
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
+  constructor(
+      private router: Router,
+      private authenticationService: AuthenticationService
+  ) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
-    }
+  logout() {
+      this.authenticationService.logout();
+      this.router.navigate(['/login']);
+  }
 }

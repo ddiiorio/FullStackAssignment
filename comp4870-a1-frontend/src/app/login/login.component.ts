@@ -2,7 +2,6 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
 
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -56,7 +54,8 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    // this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/boats']);
                 },
                 error => {
                     this.error = error;

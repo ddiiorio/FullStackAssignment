@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Boat } from '../../models/boat'
 import { BoatService } from '../../services/boat.service'
+import { MatSnackBar } from '@angular/material';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-boats',
@@ -17,10 +21,18 @@ export class BoatsComponent implements OnInit {
   ];
   data: Boat[] = [];
   isLoadingResults = true;
+  private snackBar: MatSnackBar;
+  currentUser: User;
 
-  constructor(private boatApi: BoatService) { }
+  constructor(
+    private boatApi: BoatService,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+   }
 
   ngOnInit() {
+    //this.snackBar.open('Welcome back ' + this.authenticationService.currentUser);
     this.boatApi.getBoats()
       .subscribe(res => {
         this.data = res;

@@ -5,14 +5,12 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { Globals } from '../globals'
-import { MatSnackBar } from '@angular/material';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     private apiUrl: string;
-    private snackBar: MatSnackBar
 
     constructor(private http: HttpClient, private globals: Globals) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -29,12 +27,12 @@ export class AuthenticationService {
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
-                    console.log(user.token)
+                    console.log('token: ' + user.token)
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-
+                
                 return user;
             }));
     }

@@ -13,6 +13,7 @@ export class BoatAddComponent implements OnInit {
   boatForm: FormGroup;
   isLoadingResults = false;
   submitted = false;
+  BoatId: number;
 
   constructor(
     private router: Router, 
@@ -36,15 +37,16 @@ export class BoatAddComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.boatForm.invalid) {
-        return;
+      console.log('invalid form')
+      return;
     }
 
     this.isLoadingResults = true;
     this.boatApi.addBoat(form)
       .subscribe(res => {
-          let id = res['BoatId'];
+          //let id = res['BoatId'];
           this.isLoadingResults = false;
-          this.router.navigate(['/boat-details', id]);
+          this.router.navigate(['/boat-details/' + this.boatForm.controls.boatId]);
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;

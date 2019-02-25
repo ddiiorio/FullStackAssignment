@@ -6,5 +6,7 @@ export class User {
     LastName: string
     Country: string
     MobileNumber: string
+    Role: string
+    Token: string
 }
 

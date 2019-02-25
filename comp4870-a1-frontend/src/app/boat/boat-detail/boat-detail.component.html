@@ -5,31 +5,32 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a class="nav-link text-white" mat-raised-button color="primary" [routerLink]="['/boats']">
+    <a class="nav-link text-white boat-raised-buttons" mat-raised-button color="primary" [routerLink]="['/boats']">
       <mat-icon>list</mat-icon></a>
   </div>
   <mat-card class="mat-elevation-z4">
     <mat-card-header>
-      <mat-card-title><h3>{{ boat.BoatName }}</h3></mat-card-title> Name
-      <mat-card-subtitle>{{ boat.Description }}</mat-card-subtitle> Description
+      <mat-card-title><h3>{{ boat.boatName }}</h3></mat-card-title>
+      <mat-card-subtitle>{{ boat.description }}</mat-card-subtitle>
     </mat-card-header>
+    <img mat-card-image [src]="( boat.picture )" />
     <mat-card-content>
       <dl>
         <dt>Boat ID:</dt>
-        <dd>{{ boat.BoatId }}</dd>
+        <dd>{{ boat.boatId }}</dd>
         <dt>Length In Feet:</dt>
-        <dd>{{ boat.LenthInFeet }}</dd>
+        <dd>{{ boat.lengthInFeet }} ft</dd>
         <dt>Make:</dt>
-        <dd>{{ boat.Make }}</dd>
+        <dd>{{ boat.make }}</dd>
       </dl>
     </mat-card-content>
 
     <!-- only show these buttons if admin signed in  *ngIf="currentUser === admin" or something -->
-    <mat-card-actions>
+    <mat-card-actions *ngIf="isAdmin">
       <div class="form-group">
-        <button mat-raised-button color="primary" [routerLink]="['/boat-edit', boat.BoatId]">
+        <button mat-raised-button color="primary" [routerLink]="['/boat-edit', boat.boatId]">
           Edit</button>
-        <button mat-raised-button color="warn" (click)="deleteBoat(boat.BoatId)">
+        <button mat-raised-button color="warn" (click)="deleteBoat(boat.boatId)">
           Delete</button>
       </div>
     </mat-card-actions>
