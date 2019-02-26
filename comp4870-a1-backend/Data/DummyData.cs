@@ -39,6 +39,9 @@ namespace comp4870_a1_backend.Data
                 }
                 
             }
+
+        
+            
         }
 
         private static List<User> GetUsers()
@@ -49,7 +52,7 @@ namespace comp4870_a1_backend.Data
                 {
                     UserName = "a",
                     Email = "a@a.a",
-                    Password = "P@$$w0rd",
+                    Password = "aPass",
                     FirstName = "aFirst",
                     LastName = "aLast",
                     Country = "aCountry",
@@ -58,12 +61,12 @@ namespace comp4870_a1_backend.Data
                 },
                 new User()
                 {
-                    UserName = "m",
-                    Email = "m@m.m",
-                    Password = "mPass",
-                    FirstName = "mFirst",
-                    LastName = "mLast",
-                    Country = "mCountry",
+                    UserName = "b",
+                    Email = "b@b.b",
+                    Password = "bPass",
+                    FirstName = "bFirst",
+                    LastName = "bLast",
+                    Country = "bCountry",
                     MobileNumber = "1231231231",
                     Role = Role.Member,
                 },
@@ -87,43 +90,27 @@ namespace comp4870_a1_backend.Data
             {
                 new Boat()
                 {
-                    BoatName = "Nice Boat",
-                    Picture = "https://upload.wikimedia.org/wikipedia/commons/d/d9/Motorboat_at_Kankaria_lake.JPG",
-                    LengthInFeet = 12,
-                    Make = "Good Make",
-                    Description = "Slick looking boat",
+                    BoatName = "BoatName1",
+                    Picture = "Picture1",
+                    LengthInFeet = 1,
+                    Make = "Make1",
+                    Description = "Description1",
                 },
                 new Boat()
                 {
-                    BoatName = "Big Boat",
-                    Picture = "https://www.bavariayachts.com/fileadmin/_processed_/e/c/csm_bavaria-mb-overview-virtessline_4e4f48597b.jpg",
-                    LengthInFeet = 50,
-                    Make = "Nice Boat",
-                    Description = "Real nice boat",
+                    BoatName = "BoatName2",
+                    Picture = "Picture2",
+                    LengthInFeet = 2,
+                    Make = "Make2",
+                    Description = "Description2",
                 },
                 new Boat()
                 {
-                    BoatName = "Beautiful Boat",
-                    Picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoRBpH2oRn7M7m8VXZefab_9GbLyWp2zdj8-TWA1nDloPpms5r",
-                    LengthInFeet = 15,
-                    Make = "Beautiful Boat",
-                    Description = "Good looking boat with some company",
-                },
-                new Boat()
-                {
-                    BoatName = "Van Boat",
-                    Picture = "https://i.pinimg.com/originals/4f/f0/fa/4ff0fa1b6f4cb2164f6d2a5003dd2e21.jpg",
-                    LengthInFeet = 15,
-                    Make = "Self made",
-                    Description = "This is a self made boat home",
-                },
-                new Boat()
-                {
-                    BoatName = "Boat home",
-                    Picture = "https://www.thehulltruth.com/attachment.php?attachmentid=216262&stc=1&d=1327454305",
-                    LengthInFeet = 10,
-                    Make = "Self made",
-                    Description = "Boat made by self",
+                    BoatName = "BoatName3",
+                    Picture = "Picture3",
+                    LengthInFeet = 3,
+                    Make = "Make3",
+                    Description = "Description3",
                 }
             };
         }
