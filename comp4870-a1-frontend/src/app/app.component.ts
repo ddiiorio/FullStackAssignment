@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthenticationService } from './services/authentication.service';
 import { User } from './models/user';
@@ -12,6 +13,7 @@ import { User } from './models/user';
 export class AppComponent {
   title = 'Comp4870 Assignment 1';
   currentUser: User;
+  snackBar: MatSnackBar;
 
   constructor(
       private router: Router,

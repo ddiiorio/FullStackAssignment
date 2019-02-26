@@ -1,40 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Boat } from '../models/boat';
-import { Globals } from '../globals'
-import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { AuthenticationService } from './authentication.service';
+import { NotificationsService } from './notifications.service';
 
-const httpOptions = {
-  headers: new HttpHeaders(
-    {
-      'Content-Type': 'application/json'
-    })
-};
-const boatsUrl = "https://localhost:5001/api/boats";
+const boatsUrl = "https://comp4870-a1-backend2.azurewebsites.net/api/boats";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoatService {
-  private token: string
-  private httpOptionsToken = {
+  currentUser: User;
+  private httpOptions = {
     headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '  + this.token
-      })
-  };
+    {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authenticationService.getToken()
+    })
+  }
 
   constructor(
     private http: HttpClient, 
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private notifications: NotificationsService
     ) {
-      let currentUser = this.authenticationService.currentUserValue;
-      if (currentUser != null) 
-        this.token = currentUser.Token;
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -49,7 +43,7 @@ export class BoatService {
   }
 
   getBoats(): Observable<Boat[]> {
-    return this.http.get<Boat[]>(boatsUrl)
+    return this.http.get<Boat[]>(boatsUrl, this.httpOptions)
       .pipe(
         tap(heroes => console.log('fetched boats')),
         catchError(this.handleError('getBoats', []))
@@ -58,22 +52,24 @@ export class BoatService {
   
   getBoat(id: number): Observable<Boat> {
     const url = `${boatsUrl}/${id}`;
-    return this.http.get<Boat>(url).pipe(
+    return this.http.get<Boat>(url, this.httpOptions).pipe(
       tap(_ => console.log(`fetched boat id=${id}`)),
       catchError(this.handleError<Boat>(`getBoat id=${id}`))
     );
   }
   
   addBoat(boat: any): Observable<Boat> {
-    return this.http.post<Boat>(boatsUrl, boat, httpOptions).pipe(
-      tap((boat: Boat) => console.log(`added boat w/ id=${boat.BoatId}`)),
+    this.notifications.openSnackBar('Boat Added');
+    return this.http.post<Boat>(boatsUrl, boat, this.httpOptions).pipe(
+      tap((boat: Boat) => console.log(`added boat w/ id=${boat.boatId}`)),
       catchError(this.handleError<Boat>('addBoat'))
     );
   }
   
   updateBoat(id: number, boat: any): Observable<any> {
     const url = `${boatsUrl}/${id}`;
-    return this.http.put(url, boat, httpOptions).pipe(
+    this.notifications.openSnackBar('Boat Updated');
+    return this.http.put(url, boat, this.httpOptions).pipe(
       tap(_ => console.log(`updated boat id=${id}`)),
       catchError(this.handleError<any>('updateBoat'))
     );
@@ -81,8 +77,8 @@ export class BoatService {
   
   deleteBoat(id: number): Observable<Boat> {
     const url = `${boatsUrl}/${id}`;
-  
-    return this.http.delete<Boat>(url, httpOptions).pipe(
+    this.notifications.openSnackBar('Boat Deleted');
+    return this.http.delete<Boat>(url, this.httpOptions).pipe(
       tap(_ => console.log(`deleted boat id=${id}`)),
       catchError(this.handleError<Boat>('deleteBoat'))
     );

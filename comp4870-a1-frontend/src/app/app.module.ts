@@ -6,27 +6,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule, MatSnackBarModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSortModule,
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSortModule, MatRippleModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { IndexComponent } from './index/index.component';
 import { AuthenticationService } from './services/authentication.service';
-import { UserService } from './services/user.service';
-import { Globals } from './globals';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BoatsComponent } from './boat/boats/boats.component';
 import { BoatDetailComponent } from './boat/boat-detail/boat-detail.component';
 import { BoatAddComponent } from './boat/boat-add/boat-add.component';
 import { BoatEditComponent } from './boat/boat-edit/boat-edit.component';
+import { BoatService } from './services/boat.service';
+import { NotificationsService } from './services/notifications.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    IndexComponent,
     BoatsComponent,
     BoatDetailComponent,
     BoatAddComponent,
@@ -44,6 +42,7 @@ import { BoatEditComponent } from './boat/boat-edit/boat-edit.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
+    MatRippleModule,
     MatSortModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
@@ -54,8 +53,8 @@ import { BoatEditComponent } from './boat/boat-edit/boat-edit.component';
   ],
   providers: [
     AuthenticationService,
-    UserService,
-    Globals,
+    BoatService,
+    NotificationsService,
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [AppComponent]

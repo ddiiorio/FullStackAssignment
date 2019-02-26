@@ -11,9 +11,7 @@
       <form [formGroup]="boatForm" (ngSubmit)="onSubmit(boatForm.value)">
         <div class="form-group">
           <mat-form-field>
-            <input matInput placeholder="Boat ID" formControlName="BoatId"
-                    [errorStateMatcher]="matcher" type="number" required>
-            <mat-error>Please enter Boat ID</mat-error>
+            <input matInput placeholder="Boat ID" formControlName="BoatId" >
           </mat-form-field>
         </div>
         <div class="form-group">
@@ -39,11 +37,14 @@
         </div>
         <div class="form-group">
           <mat-form-field>
-            <input matInput placeholder="Boat Description" formControlName="Description"
-                    [errorStateMatcher]="matcher" required>
-            <!-- <div [froalaEditor]>Boat Description</div> -->
-            <mat-error>Please enter Boat Description</mat-error>
-          </mat-form-field>
+              <input matInput placeholder="Picture Url" formControlName="Picture"
+                      [errorStateMatcher]="matcher" required>
+              <mat-error>Please enter Picture Url</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label>Description: </label>
+          <div [froalaEditor] formControlName="Description" ></div>
         </div>
           <div class="button-row">
             <button type="submit" [disabled]="loading" mat-raised-button color="primary">Save</button>

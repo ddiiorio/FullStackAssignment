@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Boat } from '../../models/boat'
 import { BoatService } from '../../services/boat.service'
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
@@ -13,7 +12,6 @@ export class BoatAddComponent implements OnInit {
   boatForm: FormGroup;
   isLoadingResults = false;
   submitted = false;
-  BoatId: number;
 
   constructor(
     private router: Router, 
@@ -23,12 +21,12 @@ export class BoatAddComponent implements OnInit {
 
   ngOnInit() {
     this.boatForm = this.formBuilder.group({
-      BoatId: ['', Validators.required],
+      // BoatId: ['', Validators.required],
       BoatName: ['', Validators.required],
       LengthInFeet: ['', Validators.required],
       Make: ['', Validators.required],
       Picture: ['', Validators.required],
-      Description: ['', Validators.required]
+      Description: ['']
     });
   }
 
@@ -44,13 +42,13 @@ export class BoatAddComponent implements OnInit {
     this.isLoadingResults = true;
     this.boatApi.addBoat(form)
       .subscribe(res => {
-          //let id = res['BoatId'];
           this.isLoadingResults = false;
-          this.router.navigate(['/boat-details/' + this.boatForm.controls.boatId]);
+          //this.router.navigate(['/boat-details/' + form.BoatId]);
+          this.router.navigate(['/boats']);
+
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;
         });
   }
-
 }

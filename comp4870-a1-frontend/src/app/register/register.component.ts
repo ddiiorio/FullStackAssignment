@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -43,10 +43,8 @@ export class RegisterComponent implements OnInit {
         return;
     }
 
-    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-
     this.loading = true;
-        this.userService.register(this.registerForm.value)
+        this.authenticationService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {

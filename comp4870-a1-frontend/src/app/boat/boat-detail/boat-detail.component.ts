@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { Boat } from '../../models/boat'
 import { BoatService } from '../../services/boat.service'
 import { User } from 'src/app/models/user';
@@ -15,36 +14,27 @@ export class BoatDetailComponent implements OnInit {
   currentUser: User;
   _id: any;
   boat: Boat = {
-    BoatId: null,
-    BoatName: '',
-    LengthInFeet: null,
-    Make: '',
-    Picture: '',
-    Description: ''
+    boatId: null,
+    boatName: '',
+    lengthInFeet: null,
+    make: '',
+    picture: '',
+    description: ''
   };
   isLoadingResults = true;
-  isAdmin = true;
+  isAdmin = false;
 
   constructor(
     private route: ActivatedRoute, 
     private boatApi: BoatService,
     private authenticationService: AuthenticationService, 
-    private router: Router,
+    private router: Router
   ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    //this.isAdmin = this.currentUser.Role === 'ADMIN' ? true : false;
-
-    // this.route.params.subscribe(params => {
-    //   this._id = + params['id'];
-    // });
-
-    
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
    }
 
   ngOnInit() {
-    // this.route.params.subscribe((evt) => {
-    //   console.log('testing id ' + evt.state.root.params['id']);
-    // });
+    this.isAdmin = this.authenticationService.isAdmin();
     this._id = this.route.snapshot.paramMap.get('id');
     this.getBoatDetails(this._id);
   }

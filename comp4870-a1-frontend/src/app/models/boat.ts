@@ -1,8 +1,8 @@
 export class Boat {
-    BoatId: number
-    BoatName: string
-    Picture: string
-    LengthInFeet: number
-    Make: string
-    Description: string
+    boatId: number
+    boatName: string
+    picture: string
+    lengthInFeet: number
+    make: string
+    description: string
 }
