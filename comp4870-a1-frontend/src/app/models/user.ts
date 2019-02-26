@@ -9,4 +9,3 @@ export class User {
     Role: string
     Token: string
 }
-

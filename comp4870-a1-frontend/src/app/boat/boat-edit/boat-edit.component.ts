@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BoatService } from '../../services/boat.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { Boat } from 'src/app/models/boat';
 
 @Component({
@@ -31,15 +31,15 @@ export class BoatEditComponent implements OnInit {
 
   ngOnInit() {
     this._id = this.route.snapshot.paramMap.get('id');
-    this.getBoat(this._id);
     this.boatForm = this.formBuilder.group({
-      BoatId: [{value: '', disabled: true}],
+      BoatId: [''],
       BoatName: ['', Validators.required],
       LengthInFeet: ['', Validators.required],
       Make: ['', Validators.required],
       Picture: ['', Validators.required],
       Description: ['']
     });
+    this.getBoat(this._id);
   }
 
   getBoat(id: number) {

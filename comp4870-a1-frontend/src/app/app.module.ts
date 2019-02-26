@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { BoatAddComponent } from './boat/boat-add/boat-add.component';
 import { BoatEditComponent } from './boat/boat-edit/boat-edit.component';
 import { BoatService } from './services/boat.service';
 import { NotificationsService } from './services/notifications.service';
+import { ErrorHandler } from './services/error.handler';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NotificationsService } from './services/notifications.service';
     AuthenticationService,
     BoatService,
     NotificationsService,
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandler, multi: true }
   ],
   bootstrap: [AppComponent]
 })

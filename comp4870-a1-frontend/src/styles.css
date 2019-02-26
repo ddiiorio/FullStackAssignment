@@ -30,13 +30,14 @@ body {
 }
 
 .content {
-        min-height: 90vh;
-        height: initial;
+    min-height: 90vh;
+    height: initial;
 }
 
 .jumbotron {
     margin-bottom: 0 !important;
     height: 100%;
+    padding: 2rem !important;
 }
 
 .boat-loading-shade {
