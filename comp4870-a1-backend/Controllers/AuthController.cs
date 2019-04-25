@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using comp4870_a1_backend.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace comp4870_a1_backend.Controllers
 {
+    // [EnableCors]
     public class AuthController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -21,7 +23,6 @@ namespace comp4870_a1_backend.Controllers
 
         public AuthController( IConfiguration configuration, ApplicationDbContext context)
         {
-           //  _userManager = userManager;
             _configuration = configuration;
             _context = context;
         }
@@ -30,19 +31,27 @@ namespace comp4870_a1_backend.Controllers
         [HttpPost]
         public async Task<ActionResult> InsertUser([FromBody] User model)
         {
-            // TODO: Add verification 
+            var user = _context.Users.Find(model.UserName);
+            var email = _context.Users.Find(model.Email);
+            // Checks whether user exists
+            if (user != null || email != null)
+            {
+                return BadRequest(new { response = "StatusExists" });
+            }
+
             model.SecurityStamp = Guid.NewGuid().ToString();
+            model.Role = Role.Member;
+
             _context.Users.Add(model);
             _context.SaveChanges();
 
-            return Ok(new { Username = model.UserName });
+            return Ok(new { response = "StatusSuccess" });
         }
 
         [Route("login")]
         [HttpPost]
         public async Task<ActionResult> Login([FromBody] User model)
         {
-            // var user = await _userManager.FindByNameAsync(model.UserName);
             var user = _context.Users.Find(model.UserName);
             if (user == null || (model.Password != user.Password))
             {
@@ -65,10 +74,12 @@ namespace comp4870_a1_backend.Controllers
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token),
-                expiration = token.ValidTo
+                expiration = token.ValidTo,
+                role = user.Role
             });
         }
     }

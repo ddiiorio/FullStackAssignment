@@ -7,7 +7,7 @@ import { User } from '../models/user';
 import { AuthenticationService } from './authentication.service';
 import { NotificationsService } from './notifications.service';
 
-const boatsUrl = "https://comp4870-a1-backend2.azurewebsites.net/api/boats";
+const boatsUrl = "https://ddboatsapi.azurewebsites.net/api/boats";
 
 
 @Injectable({

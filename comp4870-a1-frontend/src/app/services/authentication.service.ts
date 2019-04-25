@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { NotificationsService } from './notifications.service';
 
-const apiUrl: string = 'https://comp4870-a1-backend2.azurewebsites.net';
+const apiUrl: string = 'https://ddboatsapi.azurewebsites.net';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

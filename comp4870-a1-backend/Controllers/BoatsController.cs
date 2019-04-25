@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using comp4870_a1_backend.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace comp4870_a1_backend.Controllers
 {
+
+    // [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class BoatsController : ControllerBase
@@ -45,7 +48,7 @@ namespace comp4870_a1_backend.Controllers
         }
 
         // PUT: api/Boats/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Member")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBoat(int id, Boat boat)
         {
@@ -76,10 +79,27 @@ namespace comp4870_a1_backend.Controllers
         }
 
         // POST: api/Boats
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
+            if (boat.BoatName == null)
+            {
+                return BadRequest(new { Response = "BoatName Missing" });
+            }
+            if (boat.LengthInFeet == 0)
+            {
+                return BadRequest(new { Response = "LengthInFeet cannot be empty or 0" });
+            }
+            if (boat.Make == null)
+            {
+                return BadRequest(new { Response = "Make missing" });
+            }
+            if (boat.Picture == null)
+            {
+                return BadRequest(new { Response = "Picture missing" });
+            }
+
             _context.Boats.Add(boat);
             await _context.SaveChangesAsync();
 
