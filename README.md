@@ -8,3 +8,4 @@
   - Angular 7 Front-end
   - .NET Core API
   - SQL Database
+
