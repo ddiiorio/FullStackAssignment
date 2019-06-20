@@ -2,7 +2,7 @@
 
   - Front-end deployment: https://comp4870a1-ddfl.azurewebsites.net/
     ```
-    u: a  pw: P@$$w0rd
+    u: m  pw: P@$$w0rd
     ```
   - Back-end API: https://ddboatsapi.azurewebsites.net
   
