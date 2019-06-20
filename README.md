@@ -1,6 +1,9 @@
 # COMP4870 - Full Stack Assignment
 
   - Front-end deployment: https://comp4870a1-ddfl.azurewebsites.net/
+    ```
+    u: a  pw: P@$$w0rd
+    ```
   - Back-end API: https://ddboatsapi.azurewebsites.net
   
   
